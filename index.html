@@ -3,10 +3,14 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <title>Twiddler Home Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+ 
+    
     <script>
-
+      
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
@@ -15,13 +19,39 @@
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          var curr = (new Date).toLocaleString();
+          $tweet.html('@' + tweet.user + ': ' + tweet.message + "<br/><time>" + curr +"</time>"); 
           $tweet.appendTo($body);
           index -= 1;
         }
+        var $newTweets =$('</br><button type="submit">New Messages</button>');
+        $newTweets.appendTo($body);
 
+        $("div").addClass("grid");
       });
 
-    </script>
+    </script> 
+    <header>
+        <h1>Twiddler</h1>
+      </header> 
+        <main>
+          <div>@douglascalhoun: that wizard engineered my system #techlife</div>
+          <div>@douglascalhoun: that wizard built that potato for real</div>
+          <div>@douglascalhoun: just engineered that pony</div>
+          <div>@shawndrost: productively deployed my money #magic</div>
+          <div>@mracus: that wizard navigated a life #techlife</div>
+          <div>@sharksforcheap: a ninja developed an entire cloud #ballin</div>
+          <div>@douglascalhoun: enjoyed an entire system #ballin</div>
+          <div>@sharksforcheap: productively enjoyed the big koolaid but only i know how</div>
+          <div>@mracus: ask me how i developed an entire cloud #sxsw</div>
+          <div>@mracus: completely engineered an entire security system</div>
+          <div>@douglascalhoun: the president interfaced that koolaid but only i know how</div>
+        </main>
   </body>
 </html>
+<!-- 
+  Figure out how to add header, nav-sidebar, and add new tweets w/ timestamp
+  Add own tweets, by adding username, message
+Add CSS -> Grid, Color, Typography, Image, 
+ 
+--> 
