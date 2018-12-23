@@ -1,0 +1,32 @@
+/*body {
+    background-color: #ECF0F1;
+    margin: 0 auto;
+}*/
+header {
+  background-color: #3498DB;
+  width: 100%;
+}
+h1 {
+  color: #ECF0F1;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 450px;
+  grid-template-rows: repeat(10, auto);
+  grid-auto-rows: 20px;
+  grid-gap: 10px;
+  justify-items: start;
+  justify-content: center;
+  grid-auto-flow: row;
+  position: relative;
+}
+.grid { 
+  width: 500px;
+  color: #3498DB;
+
+}
+time {
+  color: #2C3E50;
+  font-size: 70%;
+}
