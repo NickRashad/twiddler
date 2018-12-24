@@ -7,29 +7,46 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
- 
-    
     <script>
-      
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
 
         var index = streams.home.length - 1;
+        var highestIndex = streams.home.length -1;
+
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          var curr = (new Date).toLocaleString();
+          var curr = tweet.created_at.toLocaleString();
           $tweet.html('@' + tweet.user + ': ' + tweet.message + "<br/><time>" + curr +"</time>"); 
           $tweet.appendTo($body);
           index -= 1;
         }
-        var $newTweets =$('</br><button type="submit">New Messages</button>');
+        var $newTweets =$('</br><form id="NewMsg"><button class="submission" type="submit">New Messages</button></form>');
         $newTweets.appendTo($body);
-
-        $("div").addClass("grid");
+        $("div").addClass("twidds");
+        $("#NewMsg").addClass("dashboard");
+        
+        $("#NewMsg").submit(function( event ) {
+          event.preventDefault();
+          $body.html('');
+          index = streams.home.length - 1;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div class="twidds"></div>');
+            var curr = tweet.created_at.toLocaleString();
+            $tweet.html('@' + tweet.user + ': ' + tweet.message + "<br/><time>" + curr +"</time>"); 
+            $tweet.appendTo($body);
+            index -= 1;
+          }
+          highestIndex = streams.home.length -1;
+          var $newTweets =$('</br><form id="NewMsg"><button class="submission" type="submit">New Messages</button></form>');
+          $newTweets.appendTo($body);
+          $("div").addClass("twidds");
+          $("#NewMsg").addClass("dashboard");
+        });
       });
-
     </script> 
     <header>
         <h1>Twiddler</h1>
@@ -50,7 +67,10 @@
   </body>
 </html>
 <!-- 
-  Figure out how to add header, nav-sidebar, and add new tweets w/ timestamp
+  Figure out how to:
+  add new tweets from stream
+  add header
+  nav-sidebar
   Add own tweets, by adding username, message
 Add CSS -> Grid, Color, Typography, Image, 
  
