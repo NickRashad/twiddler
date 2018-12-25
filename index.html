@@ -19,7 +19,8 @@
         var index = streams.home.length - 1;
         var user = '';
         var $newTweets =$('</br><form id="NewMsg"><button class="submission" type="submit">New Messages</button></form>');
-        
+        var lastTweet = streams.home[streams.home.length -1].created_at;
+
         function newMsgs (){
           while(index >= 0){
             var tweet = streams.home[index];
@@ -37,13 +38,16 @@
           if(users.includes(user)){
             $('aside').html('');
             var userindex = streams.users[user].length -1;
-            while(userindex >= 0 ){
-              var usertweet = streams.users[user][userindex];
+            var count = 0;
+            while(count <= userindex ){
+              var usertweet = streams.users[user][count];
               var $currusers = $('<aside class="usertwidds"></aside>');
               var curr = usertweet.created_at.toLocaleString();
-              $currusers.html('@' + usertweet.user + ': ' + usertweet.message + "<br/><time>" + curr +"</time>"); 
-              $currusers.appendTo($main);
-              userindex -= 1;
+              if(lastTweet >= usertweet.created_at){
+                $currusers.html('@' + usertweet.user + ': ' + usertweet.message + "<br/><time>" + curr +"</time>"); 
+                $currusers.prependTo($main);
+              }
+              count += 1;
             }
             $("aside").addClass("usertwidds");
           }
@@ -62,6 +66,7 @@
           event.preventDefault();
           $main.html('');
           index = streams.home.length - 1;
+          lastTweet = streams.home[streams.home.length -1].created_at;
           newMsgs();
           userTweets(user);
           clickForNewMsg();
